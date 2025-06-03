@@ -1,0 +1,27 @@
+[
+  {
+    "code": "P0300",
+    "description": "Random Misfire",
+    "is_active": true
+  },
+  {
+    "code": "P0420",
+    "description": "Catalyst System Efficiency Below Threshold",
+    "is_active": true
+  },
+  {
+    "code": "P0171",
+    "description": "System Too Lean (Bank 1)",
+    "is_active": false
+  },
+  {
+    "code": "P0174",
+    "description": "System Too Lean (Bank 2)",
+    "is_active": false
+  },
+  {
+    "code": "P0101",
+    "description": "Mass or Volume Air Flow Circuit Range/Performance Problem",
+    "is_active": false
+  }
+]

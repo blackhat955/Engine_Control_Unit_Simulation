@@ -1,0 +1,8 @@
+{
+  "auto_fan_control_enabled": true,
+  "fan_on_temperature": 95,
+  "fan_off_temperature": 88,
+  "fan_high_speed_temperature": 102,
+  "fan_low_speed_temperature": 94,
+  "enable_temperature_logging": true
+}

@@ -1,0 +1,6 @@
+{
+  "battery_voltage_enabled": true,
+  "battery_voltage_warning_threshold": 11.8,
+  "battery_voltage_critical_threshold": 10.5,
+  "enable_voltage_logging": true
+}

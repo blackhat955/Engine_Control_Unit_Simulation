@@ -1,141 +1,162 @@
-# Serial Communication Firmware Update System
+# ECU Simulator & Diagnostic Toolchain
 
-This project consists of two C# applications for simulating firmware updates over serial connections:
+> A cross-platform toolchain for simulating and diagnosing vehicle Engine Control Units (ECUs) - designed specifically for macOS using .NET 6+ and local serial communication.
 
-1. **PatchTool**: A utility for sending firmware updates to devices
-2. **MockDevice**: A simulated device that receives firmware updates
+##  What Is This?
 
-## Prerequisites
+This project provides a complete simulation environment for automotive ECU diagnostics without requiring physical hardware. It consists of two main components that communicate via virtual serial ports:
 
-### .NET SDK
+1. **Vehicle ECU Simulator** - A console application that mimics real-time vehicle sensor data
+2. **Diagnostic Console Application** - A C# tool that connects to the simulator for monitoring and configuration
 
-This project requires the .NET SDK. If you don't have it installed, you can download it from:
+Perfect for embedded developers, automotive students, firmware testers, or anyone interested in ECU diagnostics without needing actual vehicle hardware.
 
-- [Download .NET for macOS](https://dotnet.microsoft.com/download/dotnet)
+![ECU Simulator Demo](https://via.placeholder.com/800x400?text=ECU+Simulator+Demo)
 
-Verify your installation by running:
+## 🔧 System Components
 
-```bash
-dotnet --version
+### 1. Vehicle ECU Simulator
+
+This console application streams mock sensor data in real-time:
+
+```
+SPEED:72,RPM:2200,TEMP:87,FUEL:65
 ```
 
-### Virtual Serial Ports
+It accepts commands over serial connection:
+- `GET_DATA` - Returns current sensor readings
+- `SET_MAX_RPM:6000` - Configures maximum RPM threshold
+- `GET_DTC` - Returns diagnostic trouble codes (e.g., P0300)
+- `CLEAR_DTC` - Clears stored fault codes
 
-To test the applications without physical hardware, you'll need to create virtual serial ports. On macOS, this can be done using `socat`.
+Configuration is stored in `ecu_config.json`:
 
-1. Install socat (if not already installed):
-
-```bash
-brew install socat
+```json
+{
+  "max_rpm": 6000,
+  "fan_trigger_temp": 95,
+  "fuel_warning_level": 15
+}
 ```
 
-2. Create a pair of virtual serial ports:
+Diagnostic Trouble Codes are stored in a log file:
+```
+[P0300] Random Misfire
+[P0420] Catalyst System Efficiency Below Threshold
+```
+
+### 2. C# Diagnostic Console Application
+
+A menu-driven interface that connects to the simulator via virtual serial ports:
+
+- 📊 Display live sensor data with real-time updates
+- ⚙️ Configure ECU parameters (RPM limits, temperature thresholds)
+- 🔍 Read and clear diagnostic trouble codes
+- 📝 Apply firmware-style JSON patches
+- 📈 Log vehicle health data and export as CSV
+
+## Key Features
+
+- **macOS Support** - Uses .NET 6+ and `socat` for virtual COM port creation
+- **Pure C# Implementation** - No external dependencies or libraries
+- **Extensible Design** - Easily add new sensors, commands, or diagnostic features
+- **Local Simulation** - No CAN bus or hardware required
+- **Educational Value** - Perfect for learning ECU diagnostics and firmware patching
+
+## Sample "Patch" Ideas
+
+The system is designed to be extended with JSON-based patches. Some ideas:
+
+- Add O2_SENSOR or BATTERY_VOLTAGE support
+- Implement auto fan control when TEMP > 95°C
+- Create a trip mileage estimator based on speed over time
+- Build a high-temperature alert system (>100°C)
+- Add CSV export functionality for mechanic analysis
+
+## 🛠️ Technical Implementation
+
+- **Console UI** - Optionally enhanced with ANSI color codes
+- **File I/O** - Implemented via `System.IO`
+- **JSON Handling** - Using `System.Text.Json`
+- **Serial Communication** - Via `System.IO.Ports`
+- **Virtual Serial Ports** - Created using `socat` on macOS
+
+## Getting Started
+
+### Prerequisites
+
+- .NET 6 SDK or newer
+- macOS (tested on Monterey and newer)
+- `socat` utility (install via `brew install socat`)
+
+### Setup Virtual Serial Ports
 
 ```bash
+# Create a pair of virtual serial ports
 socat -d -d pty,raw,echo=0 pty,raw,echo=0
 ```
 
-This command will output something like:
+This will create two linked ports (e.g., `/dev/ttys001` and `/dev/ttys002`)
 
-```
-2023/05/01 12:34:56 socat[12345] N PTY is /dev/ttys003
-2023/05/01 12:34:56 socat[12345] N PTY is /dev/ttys004
-```
-
-Note these port names as you'll need them when running the applications.
-
-## Building the Applications
-
-1. Clone or download this repository
-2. Navigate to the project directory
-3. Build the solution:
+### Running the Simulator
 
 ```bash
-dotnet build
+# Start the ECU Simulator (use the first port from socat)
+dotnet run --project ECUSimulator -- /dev/ttys001
 ```
 
-## Running the Applications
-
-### Step 1: Create Virtual Serial Ports
-
-Open a terminal and run:
+### Running the Diagnostic Tool
 
 ```bash
-socat -d -d pty,raw,echo=0 pty,raw,echo=0
+# Start the Diagnostic Console (use the second port from socat)
+dotnet run --project DiagnosticConsole -- /dev/ttys002
 ```
 
-Note the two port names that are displayed (e.g., `/dev/ttys003` and `/dev/ttys004`).
+## Why This Project Matters
 
-### Step 2: Start the MockDevice
+- **Realistic Simulation** - Experience ECU diagnostics without physical hardware
+- **Educational Tool** - Learn about automotive systems, DTCs, and firmware patching
+- **Development Sandbox** - Test diagnostic algorithms and firmware updates safely
+- **Cross-Platform** - Works on macOS with minimal setup
 
-Open a new terminal window and run:
+## 📚 Project Structure
 
-```bash
-cd /path/to/EmbeddedSys
-dotnet run --project MockDevice
+```
+├── ECUSimulator/
+│   ├── Program.cs              # Main simulator entry point
+│   ├── ECUSimulator.cs         # Core simulation logic
+│   ├── SensorDataGenerator.cs  # Generates mock sensor data
+│   └── ecu_config.json         # Configuration file
+│
+├── DiagnosticConsole/
+│   ├── Program.cs              # Main diagnostic tool entry point
+│   ├── DiagnosticManager.cs    # Core diagnostic logic
+│   ├── SerialConnector.cs      # Serial port communication
+│   └── ConfigPatcher.cs        # JSON patch application logic
+│
+└── Common/
+    ├── Models/                 # Shared data models
+    └── Utilities/              # Shared utility functions
 ```
 
-When prompted, enter one of the port names from Step 1 (e.g., `/dev/ttys004`).
+## Contributing
 
-### Step 3: Run the PatchTool
+Contributions are welcome! Some ideas:
 
-Open another terminal window and run:
+- Add new sensor types
+- Implement additional diagnostic commands
+- Create more sophisticated firmware patches
+- Improve the console UI
+- Add support for other platforms
 
-```bash
-cd /path/to/EmbeddedSys
-dotnet run --project PatchTool
-```
+## License
 
-When prompted, enter the other port name from Step 1 (e.g., `/dev/ttys003`).
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Sample Workflow
+---
 
-1. The PatchTool will scan for available serial ports
-2. Connect to your chosen port
-3. Send a version check command (`GET_VER`)
-4. The MockDevice will respond with its version (`FW_1.0.3`)
-5. PatchTool will send the firmware update from `firmware.hex`
-6. MockDevice will receive the firmware and save it to `received_firmware.hex`
-7. Communication logs will be saved to `patch_log.txt`
+##  Ready to Get Started?
 
-## Project Structure
+Clone this repository, set up your virtual serial ports with `socat`, and start exploring the world of ECU diagnostics without leaving your development environment! Whether you're learning about automotive systems or prototyping diagnostic tools, this simulator provides a realistic environment for experimentation.
 
-- `PatchTool/`: The firmware update tool
-  - `Program.cs`: Main application code
-  - `PatchTool.csproj`: Project file
-
-- `MockDevice/`: The simulated device
-  - `Program.cs`: Main application code
-  - `MockDevice.csproj`: Project file
-
-- `firmware.hex`: Sample firmware file
-
-## Features
-
-### PatchTool
-
-- Scans for available serial ports
-- Connects to a chosen port
-- Sends version check command
-- Loads and sends firmware file line-by-line
-- Logs all communication to a file
-- Handles basic error responses
-- Implements retry logic for failed transmissions
-
-### MockDevice
-
-- Listens on a specified serial port
-- Responds to version check commands
-- Receives and saves firmware data
-- Simulates occasional errors (10% chance)
-- Provides feedback on command processing
-
-## Extending the Project
-
-Possible enhancements:
-
-- Add checksum validation for firmware lines
-- Implement more sophisticated error handling
-- Add support for different firmware formats
-- Create a GUI interface for the tools
-- Add encryption for secure firmware updates
+Feel free to fork, extend, and build upon this foundation for your own projects or educational purposes. We welcome feedback, feature contributions, and creative uses of this toolchain!

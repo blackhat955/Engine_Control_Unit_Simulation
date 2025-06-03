@@ -1,0 +1,5 @@
+{
+  "max_rpm": 6000,
+  "fan_trigger_temp": 95,
+  "fuel_warning_level": 15
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "code": "P0300",
+    "description": "Random Misfire",
+    "is_active": true
+  },
+  {
+    "code": "P0420",
+    "description": "Catalyst System Efficiency Below Threshold",
+    "is_active": true
+  }
+]

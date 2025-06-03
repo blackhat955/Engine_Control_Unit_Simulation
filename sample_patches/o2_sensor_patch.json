@@ -1,0 +1,7 @@
+{
+  "max_rpm": 6500,
+  "fan_trigger_temp": 90,
+  "fuel_warning_level": 20,
+  "o2_sensor_enabled": true,
+  "o2_sensor_warning_threshold": 0.85
+}
