@@ -1,0 +1,7 @@
+PatchTool session started at 6/3/2025 4:21:33 PM
+[2025-06-03 16:21:33] PatchTool initialized
+[2025-06-03 16:21:33] Scanning for available serial ports
+[2025-06-03 16:21:33] Found 6 serial ports: /dev/tty.debug-console, /dev/tty.i17, /dev/tty.Bluetooth-Incoming-Port, /dev/cu.debug-console, /dev/cu.i17, /dev/cu.Bluetooth-Incoming-Port
+[2025-06-03 16:21:47] User selected port: /dev/cu.Bluetooth-Incoming-Port
+[2025-06-03 16:21:47] Error connecting to port: Access to the port '/dev/cu.Bluetooth-Incoming-Port' is denied.
+[2025-06-03 16:21:47] PatchTool session ended

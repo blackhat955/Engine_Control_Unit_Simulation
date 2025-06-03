@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "l+hnXVXX8zY=",
+  "success": true,
+  "projectFilePath": "/Users/ironfeast/Desktop/EmbeddedSys/PatchTool/PatchTool.csproj",
+  "expectedPackageFiles": [
+    "/Users/ironfeast/.nuget/packages/runtime.android-arm.runtime.native.system.io.ports/9.0.5/runtime.android-arm.runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/runtime.android-arm64.runtime.native.system.io.ports/9.0.5/runtime.android-arm64.runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/runtime.android-x64.runtime.native.system.io.ports/9.0.5/runtime.android-x64.runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/runtime.android-x86.runtime.native.system.io.ports/9.0.5/runtime.android-x86.runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/runtime.linux-arm.runtime.native.system.io.ports/9.0.5/runtime.linux-arm.runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/runtime.linux-arm64.runtime.native.system.io.ports/9.0.5/runtime.linux-arm64.runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/runtime.linux-bionic-arm64.runtime.native.system.io.ports/9.0.5/runtime.linux-bionic-arm64.runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/runtime.linux-bionic-x64.runtime.native.system.io.ports/9.0.5/runtime.linux-bionic-x64.runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/runtime.linux-musl-arm.runtime.native.system.io.ports/9.0.5/runtime.linux-musl-arm.runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/runtime.linux-musl-arm64.runtime.native.system.io.ports/9.0.5/runtime.linux-musl-arm64.runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/runtime.linux-musl-x64.runtime.native.system.io.ports/9.0.5/runtime.linux-musl-x64.runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/runtime.linux-x64.runtime.native.system.io.ports/9.0.5/runtime.linux-x64.runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/runtime.maccatalyst-arm64.runtime.native.system.io.ports/9.0.5/runtime.maccatalyst-arm64.runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/runtime.maccatalyst-x64.runtime.native.system.io.ports/9.0.5/runtime.maccatalyst-x64.runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/runtime.native.system.io.ports/9.0.5/runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/runtime.osx-arm64.runtime.native.system.io.ports/9.0.5/runtime.osx-arm64.runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/runtime.osx-x64.runtime.native.system.io.ports/9.0.5/runtime.osx-x64.runtime.native.system.io.ports.9.0.5.nupkg.sha512",
+    "/Users/ironfeast/.nuget/packages/system.io.ports/9.0.5/system.io.ports.9.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}
